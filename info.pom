@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <name>SLF4J transpilable JDK binding</name>
+  <description>A transpilable SLF4J binding that logs to JDK logging</description>
+  <url>https://github.com/topobyte/slf4j-transpilable-binding-jdk</url>
+  <licenseName>MIT License</licenseName>
+  <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+  <licenseDistribution>repo</licenseDistribution>
+</project>
