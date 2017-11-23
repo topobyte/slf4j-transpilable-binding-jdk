@@ -47,29 +47,27 @@ public class LoggerFactory
 {
 
 	// key: name (String), value: a JdkLoggerImpl;
-	Map loggerMap;
+	static Map loggerMap = new HashMap();
 
-	public LoggerFactory()
+	public static Logger getLogger(Class<?> clazz)
 	{
-		loggerMap = new HashMap();
+		return getLogger(clazz.getName());
 	}
 
-	public synchronized Logger getLogger(String name)
+	public static Logger getLogger(String name)
 	{
 		Logger ulogger = null;
 		// protect against concurrent access of loggerMap
-		synchronized (this) {
-			// the root logger is called "" in JUL
-			if (name.equalsIgnoreCase(Logger.ROOT_LOGGER_NAME)) {
-				name = "";
-			}
-			ulogger = (Logger) loggerMap.get(name);
-			if (ulogger == null) {
-				java.util.logging.Logger logger = java.util.logging.Logger
-						.getLogger(name);
-				ulogger = new JdkLoggerImpl(logger);
-				loggerMap.put(name, ulogger);
-			}
+		// the root logger is called "" in JUL
+		if (name.equalsIgnoreCase(Logger.ROOT_LOGGER_NAME)) {
+			name = "";
+		}
+		ulogger = (Logger) loggerMap.get(name);
+		if (ulogger == null) {
+			java.util.logging.Logger logger = java.util.logging.Logger
+					.getLogger(name);
+			ulogger = new JdkLoggerImpl(logger);
+			loggerMap.put(name, ulogger);
 		}
 		return ulogger;
 	}
