@@ -647,7 +647,6 @@ public final class JdkLoggerImpl extends MarkerIgnoringBase
 		record.setLoggerName(getName());
 		record.setThrown(t);
 		logger.log(record);
-
 	}
 
 	static String SELF = JdkLoggerImpl.class.getName();
